@@ -8,24 +8,23 @@ var Profile =  React.createClass({
   mixins: [Router.State],
   getInitialState: function() {
     return {
-      notes: [],
-      bio: {},
-      repos: []
+      notes: [1,2,3],
+      bio: {name: this.props.params.username},
+      repos: [4,5,6]
     };
   },
   render: function() {
-    console.log(this);
-    var username = this.props.params.username;
+    var username = this.state.bio.name;
     return (
       <div className='row'>
         <div className='col-md-4'>
-          <UserProfile username={username} />
+          <UserProfile username={username} bio={this.state.bio} />
         </div>
         <div className='col-md-4'>
-          <Repos />
+          <Repos username={username} repos={this.state.repos} />
         </div>
         <div className='col-md-4'>
-          <Notes />
+          <Notes username={username} notes={this.state.notes} />
         </div>
       </div>
     );

@@ -5,7 +5,7 @@ var Profile = require('../components/Profile');
 var Router = require('react-router');
 var IndexRoute = Router.IndexRoute;
 var Route = Router.Route;
-console.log(Router);
+
 module.exports = (
   <Route path='/' component={Main}>
     <Route path='profile/:username' component={Profile} />

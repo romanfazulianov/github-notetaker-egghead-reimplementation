@@ -4,7 +4,9 @@ var UserProfile =  React.createClass({
   render: function() {
     return (
       <div>
-        UserProfile Component ===> {this.props.username}
+        <h4>User Profile</h4>
+        Username: {this.props.username} <br />
+        Bio: <pre>{JSON.stringify(this.props.bio)}</pre>
       </div>
     );
   }

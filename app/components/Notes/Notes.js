@@ -4,7 +4,9 @@ var Notes =  React.createClass({
   render: function() {
     return (
       <div>
-        Notes Component
+        <h4>Notes for User</h4>
+        Username: {this.props.username} <br />
+        Notes: <pre>{JSON.stringify(this.props.notes)}</pre>
       </div>
     );
   }

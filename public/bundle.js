@@ -25273,7 +25273,7 @@
 	var Router = __webpack_require__(166);
 	var IndexRoute = Router.IndexRoute;
 	var Route = Router.Route;
-	console.log(Router);
+
 	module.exports = React.createElement(
 	  Route,
 	  { path: '/', component: Main },
@@ -25358,31 +25358,30 @@
 	  mixins: [Router.State],
 	  getInitialState: function getInitialState() {
 	    return {
-	      notes: [],
-	      bio: {},
-	      repos: []
+	      notes: [1, 2, 3],
+	      bio: { name: this.props.params.username },
+	      repos: [4, 5, 6]
 	    };
 	  },
 	  render: function render() {
-	    console.log(this);
-	    var username = this.props.params.username;
+	    var username = this.state.bio.name;
 	    return React.createElement(
 	      'div',
 	      { className: 'row' },
 	      React.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(UserProfile, { username: username })
+	        React.createElement(UserProfile, { username: username, bio: this.state.bio })
 	      ),
 	      React.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(Repos, null)
+	        React.createElement(Repos, { username: username, repos: this.state.repos })
 	      ),
 	      React.createElement(
 	        'div',
 	        { className: 'col-md-4' },
-	        React.createElement(Notes, null)
+	        React.createElement(Notes, { username: username, notes: this.state.notes })
 	      )
 	    );
 	  }
@@ -25405,8 +25404,21 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      'UserProfile Component ===> ',
-	      this.props.username
+	      React.createElement(
+	        'h4',
+	        null,
+	        'User Profile'
+	      ),
+	      'Username: ',
+	      this.props.username,
+	      ' ',
+	      React.createElement('br', null),
+	      'Bio: ',
+	      React.createElement(
+	        'pre',
+	        null,
+	        JSON.stringify(this.props.bio)
+	      )
 	    );
 	  }
 	});
@@ -25428,7 +25440,21 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      'Repos Component'
+	      React.createElement(
+	        'h4',
+	        null,
+	        'User Repos'
+	      ),
+	      'Username: ',
+	      this.props.username,
+	      ' ',
+	      React.createElement('br', null),
+	      'Repos: ',
+	      React.createElement(
+	        'pre',
+	        null,
+	        JSON.stringify(this.props.repos)
+	      )
 	    );
 	  }
 	});
@@ -25450,7 +25476,21 @@
 	    return React.createElement(
 	      'div',
 	      null,
-	      'Notes Component'
+	      React.createElement(
+	        'h4',
+	        null,
+	        'Notes for User'
+	      ),
+	      'Username: ',
+	      this.props.username,
+	      ' ',
+	      React.createElement('br', null),
+	      'Notes: ',
+	      React.createElement(
+	        'pre',
+	        null,
+	        JSON.stringify(this.props.notes)
+	      )
 	    );
 	  }
 	});
