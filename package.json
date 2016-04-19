@@ -2,7 +2,7 @@
   "name": "github-notetaker-egghead-reimplementation",
   "version": "1.0.0",
   "repository": "https://github.com/romanfazulianov/github-notetaker-egghead-reimplementation.git",
-  "description": "react 15.01 reimplementation of Tyler McGinnis(https://github.com/tylermcginnis) github-notetaker-egghead(https://github.com/tylermcginnis/github-notetaker-egghead)",
+  "description": "react 15.01 reimplementation of Tyler McGinnis Github Notetaker for Egghead",
   "main": "index.js",
   "dependencies": {
     "axios": "^0.9.1",
