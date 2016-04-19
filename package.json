@@ -1,7 +1,8 @@
 {
-  "name": "react1",
+  "name": "github-notetaker-egghead-reimplementation",
   "version": "1.0.0",
-  "description": "",
+  "repository": "https://github.com/romanfazulianov/github-notetaker-egghead-reimplementation.git",
+  "description": "react 15.01 reimplementation of Tyler McGinnis(https://github.com/tylermcginnis) github-notetaker-egghead(https://github.com/tylermcginnis/github-notetaker-egghead)",
   "main": "index.js",
   "dependencies": {
     "axios": "^0.9.1",
@@ -19,12 +20,14 @@
     "babel-preset-react": "^6.5.0",
     "browser-sync": "^2.12.3",
     "browser-sync-webpack-plugin": "^1.0.1",
+    "nodemon": "^1.9.1",
     "webpack": "^1.13.0"
   },
   "scripts": {
-    "start": "(node server &) && webpack -w"
+    "dev": "(nodemon server &) && webpack -w",
+    "prod": "node server"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["react", "notetaker", "github", "egghead"],
+  "author": "romanfazulianov",
   "license": "ISC"
 }
