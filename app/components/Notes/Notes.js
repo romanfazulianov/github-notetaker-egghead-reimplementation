@@ -1,17 +1,10 @@
-var React = require('react');
-var UnorderedList = require('../UnorderedList');
-var InputWithSubmit = require('./InputWithSubmit');
+import React from 'react';
+import UnorderedList from '../UnorderedList';
+import InputWithSubmit from './InputWithSubmit';
 
-var Notes =  React.createClass({
-  propTypes: {
-    username: React.PropTypes.string.isRequired,
-    notes: React.PropTypes.array.isRequired,
-    addNote: React.PropTypes.func.isRequired
-  },
-  render: function() {
-    var notes = this.props.notes.map(function(note) {
-      return note['.value'];
-    });
+class Notes extends React.Component {
+  render() {
+    var notes = this.props.notes;
     return (
       <div>
         <h3>Notes for {this.props.username}</h3>
@@ -23,6 +16,12 @@ var Notes =  React.createClass({
       </div>
     );
   }
-});
+};
 
-module.exports = Notes;
+Notes.propTypes = {
+  username: React.PropTypes.string.isRequired,
+  notes: React.PropTypes.array.isRequired,
+  addNote: React.PropTypes.func.isRequired
+};
+
+export default Notes;

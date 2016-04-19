@@ -1,16 +1,14 @@
-var React = require('react');
+import React from 'react';
 
-var UnorderedList = React.createClass({
-  render: function() {
-    var items = this.props.items.map(function(item, index) {
-      return <li className='list-group-item' key={index}>{item}</li>;
-    });
+class UnorderedList extends React.Component {
+  render() {
+    var items = this.props.items.map((item, index) => (<li className='list-group-item' key={index}>{item}</li>));
     return (
       <ul className='list-group'>
         {items}
       </ul>
     );
   }
-});
+};
 
-module.exports = UnorderedList;
+export default UnorderedList;

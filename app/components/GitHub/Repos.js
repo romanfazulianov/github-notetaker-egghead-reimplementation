@@ -1,27 +1,28 @@
 var React = require('react');
-var UnorderedList = require('../UnorderedList');
 
-var Repos =  React.createClass({
-  propTypes: {
-    username: React.PropTypes.string.isRequired,
-    repos: React.PropTypes.array.isRequired
-  },
-  render: function() {
-    var repos = this.props.repos.map(function(repo) {
-      return (<div>
+class Repos extends React.Component {
+  render() {
+    var repos = this.props.repos.map((repo, index) => (<li className='list-group-item' key={index}>
           {repo.html_url && <h4><a href={repo.html_url}
               target='_blank'>{repo.name}</a></h4>}
           {repo.description && <p>{repo.description}</p>}
-        </div>
-      );
-    });
+        </li>
+      )
+    );
     return (
       <div>
         <h3>User Repos</h3>
-        <UnorderedList items={repos} />
+        <ul className='list-group'>
+          {repos}
+        </ul>
        </div>
     );
   }
-});
+};
 
-module.exports = Repos;
+Repos.propTypes = {
+  username: React.PropTypes.string.isRequired,
+  repos: React.PropTypes.array.isRequired
+};
+
+export default Repos;

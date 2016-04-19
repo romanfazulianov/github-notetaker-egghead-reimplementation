@@ -1,19 +1,16 @@
-var React = require('react');
+import React from 'react';
 
-var SearchGithub = React.createClass({
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-  handleSubmit: function(e) {
+class SearchGithub extends React.Component {
+  handleSubmit(e) {
     e.preventDefault();
     var username = this.refs.username.value;
     this.refs.username.value = '';
-    this.context.router.push('profile/' + username);
-  },
-  render: function() {
+    this.context.router.push(`profile/${username}`);
+  }
+  render() {
     return (
       <div className='col-sm-12'>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
           <div  className='form-group col-sm-7'>
             <input autoFocus={true}
                 type='text'
@@ -30,6 +27,10 @@ var SearchGithub = React.createClass({
       </div>
     );
   }
-});
+};
 
-module.exports = SearchGithub;
+SearchGithub.contextTypes = {
+  router: React.PropTypes.object.isRequired
+};
+
+export default SearchGithub;

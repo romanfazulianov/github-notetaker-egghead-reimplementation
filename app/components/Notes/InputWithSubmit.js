@@ -1,32 +1,35 @@
-var React = require('react');
+import React from 'react';
 
-var InputWithSubmit = React.createClass({
-  propTypes: {
-    submit: React.PropTypes.func.isRequired,
-    placeholder: React.PropTypes.string.isRequired
-  },
-  handleSubmit: function() {
+class InputWithSubmit extends React.Component {
+  handleSubmit(e) {
+    e.preventDefault();
     var inputValue = this.refs.text.value.trim();
     if (inputValue !== '') {
       this.refs.text.value = '';
       this.props.submit(inputValue);
     }
-  },
-  render: function() {
+  }
+
+  render() {
     return (
-      <div className='input-group'>
-        <input
+      <form onSubmit={this.handleSubmit.bind(this)} className='input-group'>
+        <input autoFocus={true}
             type='text'
             className='form-control' ref='text' placeholder={this.props.placeholder}/>
         <span className='input-group-btn'>
           <button
               className='btn btn-default'
-              type='button'
-              onClick={this.handleSubmit}>Submit</button>
+              type='submit'
+              >Submit</button>
         </span>
-      </div>
+      </form>
     );
   }
-});
+};
 
-module.exports = InputWithSubmit;
+InputWithSubmit.propTypes = {
+  submit: React.PropTypes.func.isRequired,
+  placeholder: React.PropTypes.string.isRequired
+};
+
+export default InputWithSubmit;
