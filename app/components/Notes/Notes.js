@@ -1,5 +1,5 @@
 var React = require('react');
-var UnorderedList = require('./UnorderedList');
+var UnorderedList = require('../UnorderedList');
 var InputWithSubmit = require('./InputWithSubmit');
 
 var Notes =  React.createClass({
@@ -19,7 +19,7 @@ var Notes =  React.createClass({
             submit={this.props.addNote}
             placeholder='Add New Note'
         />
-        <UnorderedList notes={notes} />
+        <UnorderedList items={notes} />
       </div>
     );
   }

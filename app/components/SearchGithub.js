@@ -5,7 +5,7 @@ var SearchGithub = React.createClass({
     router: React.PropTypes.object.isRequired
   },
   handleSubmit: function(e) {
-    //e.preventDefault();
+    e.preventDefault();
     var username = this.refs.username.value;
     this.refs.username.value = '';
     this.context.router.push('profile/' + username);

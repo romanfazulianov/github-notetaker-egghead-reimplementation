@@ -3,6 +3,7 @@ var Router = require('react-router');
 var UserProfile = require('./GitHub/UserProfile');
 var Repos = require('./GitHub/Repos');
 var Notes = require('./Notes/Notes');
+var getGitHubData = require('../utils/helpers').getGitHubData;
 var ReactFireMixin = require('reactfire');
 var Firebase = require('firebase');
 
@@ -11,23 +12,39 @@ var Profile =  React.createClass({
   getInitialState: function() {
     return {
       notes: [],
-      bio: {name: this.props.params.username},
-      repos: [4,5,6]
+      bio: {},
+      repos: []
     };
+  },
+  init: function(username) {
+    var childRef = this.ref.child(username);
+    this.bindAsArray(childRef, 'notes');
+
+    getGitHubData(username).then((function(profile) {
+      this.setState({
+        bio: profile.bio,
+        repos: profile.repos
+      });
+    }).bind(this));
   },
   componentDidMount: function() {
     this.ref = new Firebase('https://glaring-inferno-4191.firebaseio.com/');
-    var childRef = this.ref.child(this.props.params.username);
-    this.bindAsArray(childRef, 'notes');
+    this.init(this.props.params.username);
   },
   componentWillUnmount: function() {
     this.unbind('notes');
+  },
+  componentWillReceiveProps: function(nextProps) {
+    console.log(arguments);
+    this.unbind('notes');
+    this.init(nextProps.params.username);
   },
   handleAddNote: function(newNote) {
     this.firebaseRefs.notes.push(newNote);
   },
   render: function() {
-    var username = this.state.bio.name;
+    var username = this.props.params.username;
+    console.log(username, 'in render');
     return (
       <div className='row'>
         <div className='col-md-4'>

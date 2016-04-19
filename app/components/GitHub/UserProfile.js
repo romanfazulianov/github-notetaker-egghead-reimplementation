@@ -1,4 +1,5 @@
 var React = require('react');
+var UnorderedList = require('../UnorderedList');
 
 var UserProfile =  React.createClass({
   propTypes: {
@@ -6,11 +7,32 @@ var UserProfile =  React.createClass({
     bio: React.PropTypes.object.isRequired
   },
   render: function() {
+    var bio = this.props.bio;
     return (
       <div>
-        <h4>User Profile</h4>
-        Username: {this.props.username} <br />
-        Bio: <pre>{JSON.stringify(this.props.bio)}</pre>
+        <h3>User Profile</h3>
+        <ul className='list-group'>
+          {bio.avatar_url &&
+              <li className='list-group-item'><img src={bio.avatar_url} className='img-responsive'/></li>}
+          {bio.name &&
+              <li className='list-group-item'>Name: {bio.name}</li>}
+          {bio.login &&
+              <li className='list-group-item'>Username: {bio.login}</li>}
+          {bio.email &&
+              <li className='list-group-item'>Email: {bio.email}</li>}
+          {bio.location &&
+              <li className='list-group-item'>Location: {bio.location}</li>}
+          {bio.company &&
+              <li className='list-group-item'>Company: {bio.company}</li>}
+          {bio.followers !== null &&
+              <li className='list-group-item'>Followers: {bio.followers}</li>}
+          {bio.following !== null &&
+              <li className='list-group-item'>Following: {bio.following}</li>}
+          {bio.public_repos !== null &&
+              <li className='list-group-item'>Public repos: {bio.public_repos}</li>}
+          {bio.blog &&
+              <li className='list-group-item'><a href={bio.blog} target='_blank'>{bio.blog}</a></li>}
+        </ul>
       </div>
     );
   }
